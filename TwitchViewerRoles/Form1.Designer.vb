@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form1
-    Inherits DarkUI.Forms.DarkForm
+    Inherits Form
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()>
@@ -33,6 +33,7 @@ Partial Class Form1
         Me.PermFileTree = New System.Windows.Forms.TreeView()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.ManualAddUser = New System.Windows.Forms.TextBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.SearchButton = New System.Windows.Forms.PictureBox()
@@ -41,6 +42,11 @@ Partial Class Form1
         Me.MinimizeButton = New System.Windows.Forms.PictureBox()
         Me.CloseButton = New System.Windows.Forms.PictureBox()
         Me.HeaderBar = New System.Windows.Forms.PictureBox()
+        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox5 = New System.Windows.Forms.PictureBox()
+        Me.DocLabel = New System.Windows.Forms.Label()
+        Me.Panel1.SuspendLayout()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchButton, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LB_Browse_Button, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,6 +54,8 @@ Partial Class Form1
         CType(Me.MinimizeButton, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CloseButton, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.HeaderBar, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ChannelName
@@ -110,11 +118,11 @@ Partial Class Form1
         '
         Me.AppLabel.AutoSize = True
         Me.AppLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.AppLabel.Font = New System.Drawing.Font("Trebuchet MS", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AppLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.AppLabel.ForeColor = System.Drawing.SystemColors.ButtonFace
-        Me.AppLabel.Location = New System.Drawing.Point(10, 6)
+        Me.AppLabel.Location = New System.Drawing.Point(10, 8)
         Me.AppLabel.Name = "AppLabel"
-        Me.AppLabel.Size = New System.Drawing.Size(174, 23)
+        Me.AppLabel.Size = New System.Drawing.Size(181, 20)
         Me.AppLabel.TabIndex = 17
         Me.AppLabel.Text = "Twitch Viewer Roles"
         '
@@ -143,31 +151,42 @@ Partial Class Form1
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(55, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.PictureBox4)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(352, 664)
         Me.Panel1.TabIndex = 20
         '
+        'PictureBox4
+        '
+        Me.PictureBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(37, Byte), Integer))
+        Me.PictureBox4.Location = New System.Drawing.Point(0, 32)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(10, 575)
+        Me.PictureBox4.TabIndex = 0
+        Me.PictureBox4.TabStop = False
+        '
         'ManualAddUser
         '
-        Me.ManualAddUser.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(75, Byte), Integer))
+        Me.ManualAddUser.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(37, Byte), Integer))
         Me.ManualAddUser.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.ManualAddUser.Font = New System.Drawing.Font("Trebuchet MS", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ManualAddUser.ForeColor = System.Drawing.SystemColors.ButtonFace
-        Me.ManualAddUser.Location = New System.Drawing.Point(444, 593)
+        Me.ManualAddUser.Location = New System.Drawing.Point(43, 618)
         Me.ManualAddUser.Margin = New System.Windows.Forms.Padding(5)
         Me.ManualAddUser.Name = "ManualAddUser"
-        Me.ManualAddUser.Size = New System.Drawing.Size(501, 24)
+        Me.ManualAddUser.Size = New System.Drawing.Size(264, 24)
         Me.ManualAddUser.TabIndex = 22
         '
         'PictureBox2
         '
-        Me.PictureBox2.BackgroundImage = Global.TwitchViewerRoles.My.Resources.Resources.CustomUserBox
+        Me.PictureBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(37, Byte), Integer))
+        Me.PictureBox2.BackgroundImage = Global.TwitchViewerRoles.My.Resources.Resources.textbox_Corners
         Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox2.Location = New System.Drawing.Point(380, 580)
+        Me.PictureBox2.Location = New System.Drawing.Point(15, 605)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(624, 52)
+        Me.PictureBox2.Size = New System.Drawing.Size(332, 52)
         Me.PictureBox2.TabIndex = 21
         Me.PictureBox2.TabStop = False
         '
@@ -230,12 +249,45 @@ Partial Class Form1
         Me.HeaderBar.TabIndex = 4
         Me.HeaderBar.TabStop = False
         '
+        'PictureBox3
+        '
+        Me.PictureBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(37, Byte), Integer))
+        Me.PictureBox3.Location = New System.Drawing.Point(0, 597)
+        Me.PictureBox3.Name = "PictureBox3"
+        Me.PictureBox3.Size = New System.Drawing.Size(1032, 67)
+        Me.PictureBox3.TabIndex = 23
+        Me.PictureBox3.TabStop = False
+        '
+        'PictureBox5
+        '
+        Me.PictureBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(37, Byte), Integer))
+        Me.PictureBox5.Location = New System.Drawing.Point(1023, 32)
+        Me.PictureBox5.Name = "PictureBox5"
+        Me.PictureBox5.Size = New System.Drawing.Size(10, 575)
+        Me.PictureBox5.TabIndex = 24
+        Me.PictureBox5.TabStop = False
+        '
+        'DocLabel
+        '
+        Me.DocLabel.AutoSize = True
+        Me.DocLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(37, Byte), Integer))
+        Me.DocLabel.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.DocLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DocLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(75, Byte), Integer))
+        Me.DocLabel.Location = New System.Drawing.Point(886, 634)
+        Me.DocLabel.Name = "DocLabel"
+        Me.DocLabel.Size = New System.Drawing.Size(122, 20)
+        Me.DocLabel.TabIndex = 25
+        Me.DocLabel.Text = "Documentation"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1032, 664)
+        Me.Controls.Add(Me.DocLabel)
+        Me.Controls.Add(Me.PictureBox5)
         Me.Controls.Add(Me.ManualAddUser)
         Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.Label3)
@@ -252,11 +304,14 @@ Partial Class Form1
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.HeaderBar)
         Me.Controls.Add(Me.ChannelName)
+        Me.Controls.Add(Me.PictureBox3)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form1"
         Me.Text = "Form1"
+        Me.Panel1.ResumeLayout(False)
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchButton, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LB_Browse_Button, System.ComponentModel.ISupportInitialize).EndInit()
@@ -264,6 +319,8 @@ Partial Class Form1
         CType(Me.MinimizeButton, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CloseButton, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.HeaderBar, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -286,4 +343,8 @@ Partial Class Form1
     Friend WithEvents Panel1 As Panel
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents ManualAddUser As TextBox
+    Friend WithEvents PictureBox3 As PictureBox
+    Friend WithEvents PictureBox4 As PictureBox
+    Friend WithEvents PictureBox5 As PictureBox
+    Friend WithEvents DocLabel As Label
 End Class

@@ -23,7 +23,7 @@ Public Class Form1
 
             If Not String.IsNullOrEmpty(My.Settings.LBPath) Then
                 LioranBoardPath.Text = My.Settings.LBPath
-                LoadLioaranBoardPermissions(LioranBoardPath.Text, True)
+                LoadLioaranBoardPermissions(LioranBoardPath.Text, True, False)
             Else
                 PermFileTree.Nodes.Add("StartMessage", "Select LioranBoard Receiver Folder Above")
             End If
@@ -140,7 +140,7 @@ Public Class Form1
                 LioranBoardPath.Text = FolderBrowserDialog1.SelectedPath
                 My.Settings.LBPath = LioranBoardPath.Text
                 My.Settings.Save()
-                LoadLioaranBoardPermissions(LioranBoardPath.Text, False)
+                LoadLioaranBoardPermissions(LioranBoardPath.Text, False, False)
             End If
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
@@ -175,7 +175,7 @@ Public Class Form1
 #Region "Permissions File Operations etc"
 
     '--- Parse c_strFileName file into mod-level object then populate Permissions Tree
-    Private Sub LoadLioaranBoardPermissions(p_strfilePath As String, p_blnStartup As Boolean)
+    Private Sub LoadLioaranBoardPermissions(p_strfilePath As String, p_blnStartup As Boolean, p_blnDeleteGroup As Boolean)
         Try
             m_objPermGroups.Groups.Clear()
 
@@ -203,7 +203,7 @@ Public Class Form1
 
                         End Using
 
-                        PopulatePermissionTree(m_objPermGroups)
+                        PopulatePermissionTree(m_objPermGroups, p_blnDeleteGroup)
 
                     Else
 
@@ -297,14 +297,14 @@ Public Class Form1
     End Function
 
     '--- Reloads Permissions Tree with current list of objects in p_objPermGroups parameter
-    Private Sub PopulatePermissionTree(p_objPermGroups As PermissionGroups)
+    Private Sub PopulatePermissionTree(p_objPermGroups As PermissionGroups, p_blnDeleteGroup As Boolean)
         Try
 
             If p_objPermGroups IsNot Nothing AndAlso p_objPermGroups.Groups.Count > 0 Then
 
                 Dim lstExpandedNodes As New List(Of Integer)
 
-                If PermFileTree.Nodes IsNot Nothing Then
+                If Not p_blnDeleteGroup AndAlso PermFileTree.Nodes IsNot Nothing Then
 
                     For Each objNode As TreeNode In PermFileTree.Nodes
                         If objNode.IsExpanded Then
@@ -326,9 +326,11 @@ Public Class Form1
 
                 Next
 
-                For Each nodeIndex As Integer In lstExpandedNodes
-                    PermFileTree.Nodes.Item(nodeIndex).Expand()
-                Next
+                If Not p_blnDeleteGroup Then
+                    For Each nodeIndex As Integer In lstExpandedNodes
+                        PermFileTree.Nodes.Item(nodeIndex).Expand()
+                    Next
+                End If
 
             End If
 
@@ -368,7 +370,7 @@ Public Class Form1
                     strMenuMessage = "Add All Users To Group..."
                     fnFunctionToCall = AddressOf AddGroupUserPermissions
                 Else
-                    strMenuMessage = "Add User To Group..."
+                    strMenuMessage = "Add User To Role..."
                     fnFunctionToCall = AddressOf CallUserPermission
                 End If
 
@@ -422,6 +424,13 @@ Public Class Form1
 
                 item1.Tag = 1
                 AddHandler item1.Click, fnFunctionToCall
+
+                If strContextMenuMessage = "Export Button Example Json" Then
+                    Dim item2 = nodeContextMenu.Items.Add("Delete Group")
+                    item2.Tag = 2
+                    AddHandler item2.Click, AddressOf DeleteUserGroup
+                End If
+
                 nodeContextMenu.Show(sender, e.Location)
 
             End If
@@ -430,6 +439,43 @@ Public Class Form1
             MessageBox.Show(ex.ToString)
         End Try
 
+    End Sub
+
+    Private Sub DeleteUserGroup()
+        Dim result As DialogResult = MessageBox.Show(Me, "Are you sure you want to delete this Group?", "Delete Group", MessageBoxButtons.OKCancel)
+        If result = DialogResult.OK Then
+            '--- Delete Group and all users from file then reload
+            Dim strParentNode As String = PermFileTree.SelectedNode.Text
+            Dim stringList As New List(Of String)
+            Dim blnFoundGroup As Boolean = False
+            Dim blnSkipLine As Boolean = False
+
+            Dim lines As List(Of String) = File.ReadAllLines(LioranBoardPath.Text & "\" & c_strFileName).ToList
+
+            For Each strLine As String In lines
+                If Not String.IsNullOrEmpty(strLine) AndAlso strLine.StartsWith("[") Then
+                    If strLine.Trim() = strParentNode Then
+                        blnFoundGroup = True
+                    Else
+                        blnFoundGroup = False
+                    End If
+                End If
+                If blnFoundGroup Then
+                    blnSkipLine = True
+                Else
+                    blnSkipLine = False
+                End If
+                If Not blnSkipLine Then
+                    stringList.Add(strLine)
+                End If
+            Next
+
+            File.Delete(LioranBoardPath.Text & "\" & c_strFileName)
+            File.WriteAllLines(LioranBoardPath.Text & "\" & c_strFileName, stringList)
+
+            LoadLioaranBoardPermissions(LioranBoardPath.Text, False, True)
+
+        End If
     End Sub
 
 #End Region
@@ -470,7 +516,7 @@ Public Class Form1
             File.Delete(LioranBoardPath.Text & "\" & c_strFileName)
             File.WriteAllLines(LioranBoardPath.Text & "\" & c_strFileName, stringList)
 
-            LoadLioaranBoardPermissions(LioranBoardPath.Text, False)
+            LoadLioaranBoardPermissions(LioranBoardPath.Text, False, False)
 
             For Each node As TreeNode In PermFileTree.Nodes
                 If node.Text = strParentNode Then
@@ -548,7 +594,7 @@ Public Class Form1
                 File.Delete(LioranBoardPath.Text & "\" & c_strFileName)
                 File.WriteAllLines(LioranBoardPath.Text & "\" & c_strFileName, stringList)
 
-                LoadLioaranBoardPermissions(LioranBoardPath.Text, False)
+                LoadLioaranBoardPermissions(LioranBoardPath.Text, False, False)
             End If
 
         Catch ex As Exception
@@ -619,7 +665,7 @@ Public Class Form1
                 File.Delete(LioranBoardPath.Text & "\" & c_strFileName)
                 File.WriteAllLines(LioranBoardPath.Text & "\" & c_strFileName, stringList)
 
-                LoadLioaranBoardPermissions(LioranBoardPath.Text, False)
+                LoadLioaranBoardPermissions(LioranBoardPath.Text, False, False)
 
             End If
 
@@ -637,6 +683,8 @@ Public Class Form1
         If ManualAddUser.Text = "Manually Add User‎‎‎ ‎" Then
             ManualAddUser.Text = ""
             ManualAddUser.ForeColor = Color.FromArgb(255, 220, 221, 217)
+            ManualAddUser.BackColor = Color.FromArgb(255, 39, 40, 42)
+            PictureBox2.BackgroundImage = My.Resources.AddUserText
         End If
     End Sub
 
@@ -644,6 +692,8 @@ Public Class Form1
         If ManualAddUser.Text = "" Then
             ManualAddUser.Text = "Manually Add User‎‎‎ ‎"
             ManualAddUser.ForeColor = Color.FromArgb(255, 114, 118, 125)
+            PictureBox2.BackgroundImage = My.Resources.textbox_Corners
+            ManualAddUser.BackColor = Color.FromArgb(255, 34, 35, 37)
         End If
     End Sub
 
@@ -748,6 +798,14 @@ Public Class Form1
             Clipboard.SetText(strExampleButton)
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub DocLabel_Click(sender As Object, e As EventArgs) Handles DocLabel.Click
+        Try
+            System.Diagnostics.Process.Start("https://github.com/RemainIndoors1/TwitchViewerRoles/blob/master/README.md")
+        Catch ex As Exception
+
         End Try
     End Sub
 
