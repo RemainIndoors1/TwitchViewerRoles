@@ -17,6 +17,7 @@ Public Class Form1
 
     '--- Called on Application start
     Private Sub LoadApplication(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+
         Try
 
             Me.Location = My.Settings.Location
@@ -35,6 +36,7 @@ Public Class Form1
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
         End Try
+
     End Sub
 
 #End Region
@@ -176,6 +178,7 @@ Public Class Form1
 
     '--- Parse c_strFileName file into mod-level object then populate Permissions Tree
     Private Sub LoadLioaranBoardPermissions(p_strfilePath As String, p_blnStartup As Boolean, p_blnDeleteGroup As Boolean)
+
         Try
             m_objPermGroups.Groups.Clear()
 
@@ -247,6 +250,7 @@ Public Class Form1
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
         End Try
+
     End Sub
 
     Private Function ThisIsTheRightFolder(p_strPath As String) As Boolean
@@ -441,43 +445,6 @@ Public Class Form1
 
     End Sub
 
-    Private Sub DeleteUserGroup()
-        Dim result As DialogResult = MessageBox.Show(Me, "Are you sure you want to delete this Role?", "Delete Role", MessageBoxButtons.OKCancel)
-        If result = DialogResult.OK Then
-            '--- Delete Group and all users from file then reload
-            Dim strParentNode As String = PermFileTree.SelectedNode.Text
-            Dim stringList As New List(Of String)
-            Dim blnFoundGroup As Boolean = False
-            Dim blnSkipLine As Boolean = False
-
-            Dim lines As List(Of String) = File.ReadAllLines(LioranBoardPath.Text & "\" & c_strFileName).ToList
-
-            For Each strLine As String In lines
-                If Not String.IsNullOrEmpty(strLine) AndAlso strLine.StartsWith("[") Then
-                    If strLine.Trim() = strParentNode Then
-                        blnFoundGroup = True
-                    Else
-                        blnFoundGroup = False
-                    End If
-                End If
-                If blnFoundGroup Then
-                    blnSkipLine = True
-                Else
-                    blnSkipLine = False
-                End If
-                If Not blnSkipLine Then
-                    stringList.Add(strLine)
-                End If
-            Next
-
-            File.Delete(LioranBoardPath.Text & "\" & c_strFileName)
-            File.WriteAllLines(LioranBoardPath.Text & "\" & c_strFileName, stringList)
-
-            LoadLioaranBoardPermissions(LioranBoardPath.Text, False, True)
-
-        End If
-    End Sub
-
 #End Region
 
 #Region "User Permission Management"
@@ -609,7 +576,7 @@ Public Class Form1
             Dim strUserName As String = UsersTree.SelectedNode.Text & "=""true"""
             AddUserPermission(strUserName)
         Catch ex As Exception
-
+            MessageBox.Show(ex.ToString)
         End Try
 
     End Sub
@@ -666,6 +633,55 @@ Public Class Form1
                 File.WriteAllLines(LioranBoardPath.Text & "\" & c_strFileName, stringList)
 
                 LoadLioaranBoardPermissions(LioranBoardPath.Text, False, False)
+
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString)
+        End Try
+
+    End Sub
+
+    '--- Display Warning message, then Delete Group and all users in that group
+    Private Sub DeleteUserGroup()
+        Try
+
+            If MessageBox.Show(Me, "Are you sure you want to delete this Role?", "Delete Role", MessageBoxButtons.OKCancel) = DialogResult.OK Then
+
+                '--- Delete Group and all users from file then reload
+                Dim strParentNode As String = PermFileTree.SelectedNode.Text
+                Dim stringList As New List(Of String)
+                Dim blnFoundGroup As Boolean = False
+                Dim blnSkipLine As Boolean = False
+
+                Dim lines As List(Of String) = File.ReadAllLines(LioranBoardPath.Text & "\" & c_strFileName).ToList
+
+                For Each strLine As String In lines
+
+                    If Not String.IsNullOrEmpty(strLine) AndAlso strLine.StartsWith("[") Then
+                        If strLine.Trim() = strParentNode Then
+                            blnFoundGroup = True
+                        Else
+                            blnFoundGroup = False
+                        End If
+                    End If
+
+                    If blnFoundGroup Then
+                        blnSkipLine = True
+                    Else
+                        blnSkipLine = False
+                    End If
+
+                    If Not blnSkipLine Then
+                        stringList.Add(strLine)
+                    End If
+
+                Next
+
+                File.Delete(LioranBoardPath.Text & "\" & c_strFileName)
+                File.WriteAllLines(LioranBoardPath.Text & "\" & c_strFileName, stringList)
+
+                LoadLioaranBoardPermissions(LioranBoardPath.Text, False, True)
 
             End If
 
@@ -805,7 +821,7 @@ Public Class Form1
         Try
             System.Diagnostics.Process.Start("https://github.com/RemainIndoors1/TwitchViewerRoles/blob/master/README.md")
         Catch ex As Exception
-
+            MessageBox.Show(ex.ToString)
         End Try
     End Sub
 
