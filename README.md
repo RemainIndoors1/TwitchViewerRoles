@@ -1,9 +1,11 @@
-# TwitchViewerRoles
-Twitch Viewer Roles Tool for use with LioranBoard and OBS Studio
+# Twitch Viewer Roles for LioranBoard
+Twitch Viewer Roles for LioranBoard and OBS Studio
 
 ## Overview
 
-This tool provides an easy way to add or remove permissions for specific users in your chat real-time without having to make any changes in [LioranBoard](https://obsproject.com/forum/resources/lioranboard-stream-deck-animator.862/).
+This tool provides an easy way to add or remove permissions for specific viewers in your chat to trigger buttons in [LioranBoard](https://obsproject.com/forum/resources/lioranboard-stream-deck-animator.862/), and you can change those permissions real-time without having to make any changes in LioranBoard. 
+
+You can create Roles for groups of viewers and add or remove viewers from those Roles, then export an example button json for any Role you create, and make a button in LioranBoard with that json.
 
 ## Socials
 
