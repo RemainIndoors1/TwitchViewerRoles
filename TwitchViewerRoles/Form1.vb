@@ -367,7 +367,7 @@ Public Class Form1
 
                 If nodeText = "Broadcasters" OrElse nodeText = "VIPs" OrElse nodeText = "Mods" OrElse
                     nodeText = "Staff" OrElse nodeText = "Admin" OrElse nodeText = "Global Mods" OrElse nodeText = "Users" Then
-                    strMenuMessage = "Add All Users To Group..."
+                    strMenuMessage = "Add All Users To Role..."
                     fnFunctionToCall = AddressOf AddGroupUserPermissions
                 Else
                     strMenuMessage = "Add User To Role..."
@@ -426,7 +426,7 @@ Public Class Form1
                 AddHandler item1.Click, fnFunctionToCall
 
                 If strContextMenuMessage = "Export Button Example Json" Then
-                    Dim item2 = nodeContextMenu.Items.Add("Delete Group")
+                    Dim item2 = nodeContextMenu.Items.Add("Delete Role")
                     item2.Tag = 2
                     AddHandler item2.Click, AddressOf DeleteUserGroup
                 End If
@@ -442,7 +442,7 @@ Public Class Form1
     End Sub
 
     Private Sub DeleteUserGroup()
-        Dim result As DialogResult = MessageBox.Show(Me, "Are you sure you want to delete this Group?", "Delete Group", MessageBoxButtons.OKCancel)
+        Dim result As DialogResult = MessageBox.Show(Me, "Are you sure you want to delete this Role?", "Delete Role", MessageBoxButtons.OKCancel)
         If result = DialogResult.OK Then
             '--- Delete Group and all users from file then reload
             Dim strParentNode As String = PermFileTree.SelectedNode.Text
