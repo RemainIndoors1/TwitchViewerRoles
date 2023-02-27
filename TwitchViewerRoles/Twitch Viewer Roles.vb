@@ -2,7 +2,7 @@
 Imports System.Net
 Imports System.IO
 
-Public Class Form1
+Public Class TwitchViewerRoles
 
     '--- Global Permissions Group object loaded from ini file
     Dim m_objPermGroups As New PermissionGroups
