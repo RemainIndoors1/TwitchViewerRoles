@@ -26,7 +26,7 @@ Partial Class Form1
         Me.ChannelName = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.LioranBoardPath = New System.Windows.Forms.TextBox()
+        Me.SAMMICorePath = New System.Windows.Forms.TextBox()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.UsersTree = New System.Windows.Forms.TreeView()
         Me.AppLabel = New System.Windows.Forms.Label()
@@ -87,20 +87,20 @@ Partial Class Form1
         Me.Label2.ForeColor = System.Drawing.SystemColors.ButtonFace
         Me.Label2.Location = New System.Drawing.Point(396, 53)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(192, 26)
+        Me.Label2.Size = New System.Drawing.Size(189, 26)
         Me.Label2.TabIndex = 13
-        Me.Label2.Text = "LioranBoard Folder:"
+        Me.Label2.Text = "SAMMI Core Folder:"
         '
-        'LioranBoardPath
+        'SAMMICorePath
         '
-        Me.LioranBoardPath.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(75, Byte), Integer))
-        Me.LioranBoardPath.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.LioranBoardPath.Font = New System.Drawing.Font("Trebuchet MS", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LioranBoardPath.ForeColor = System.Drawing.SystemColors.InactiveBorder
-        Me.LioranBoardPath.Location = New System.Drawing.Point(600, 54)
-        Me.LioranBoardPath.Name = "LioranBoardPath"
-        Me.LioranBoardPath.Size = New System.Drawing.Size(260, 24)
-        Me.LioranBoardPath.TabIndex = 12
+        Me.SAMMICorePath.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(75, Byte), Integer))
+        Me.SAMMICorePath.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.SAMMICorePath.Font = New System.Drawing.Font("Trebuchet MS", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SAMMICorePath.ForeColor = System.Drawing.SystemColors.InactiveBorder
+        Me.SAMMICorePath.Location = New System.Drawing.Point(600, 54)
+        Me.SAMMICorePath.Name = "SAMMICorePath"
+        Me.SAMMICorePath.Size = New System.Drawing.Size(260, 24)
+        Me.SAMMICorePath.TabIndex = 12
         '
         'UsersTree
         '
@@ -119,12 +119,12 @@ Partial Class Form1
         Me.AppLabel.AutoSize = True
         Me.AppLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(34, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.AppLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AppLabel.ForeColor = System.Drawing.SystemColors.ButtonFace
+        Me.AppLabel.ForeColor = System.Drawing.Color.Silver
         Me.AppLabel.Location = New System.Drawing.Point(10, 8)
         Me.AppLabel.Name = "AppLabel"
-        Me.AppLabel.Size = New System.Drawing.Size(181, 20)
+        Me.AppLabel.Size = New System.Drawing.Size(259, 20)
         Me.AppLabel.TabIndex = 17
-        Me.AppLabel.Text = "Twitch Viewer Roles"
+        Me.AppLabel.Text = "Twitch Viewer Roles - SAMMI"
         '
         'PermFileTree
         '
@@ -297,7 +297,7 @@ Partial Class Form1
         Me.Controls.Add(Me.UsersTree)
         Me.Controls.Add(Me.LB_Browse_Button)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.LioranBoardPath)
+        Me.Controls.Add(Me.SAMMICorePath)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.MinimizeButton)
         Me.Controls.Add(Me.CloseButton)
@@ -332,7 +332,7 @@ Partial Class Form1
     Friend WithEvents MinimizeButton As PictureBox
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents LioranBoardPath As TextBox
+    Friend WithEvents SAMMICorePath As TextBox
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
     Friend WithEvents LB_Browse_Button As PictureBox
     Friend WithEvents UsersTree As TreeView

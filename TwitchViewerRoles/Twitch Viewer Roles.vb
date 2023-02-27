@@ -10,8 +10,8 @@ Public Class Form1
     '--- Name of the ini file that's created
     Const c_strFileName As String = "twitchviewerroles.ini"
 
-    '--- Name of LioranBoard Receiver.exe for correct folder validation
-    Const c_strLBexeFileName As String = "LioranBoard Receiver.exe"
+    '--- Name of SAMMI Core.exe for correct folder validation
+    Const c_strLBexeFileName As String = "SAMMI Core.exe"
 
 #Region "Startup"
 
@@ -23,10 +23,10 @@ Public Class Form1
             Me.Location = My.Settings.Location
 
             If Not String.IsNullOrEmpty(My.Settings.LBPath) Then
-                LioranBoardPath.Text = My.Settings.LBPath
-                LoadLioaranBoardPermissions(LioranBoardPath.Text, True, False)
+                SAMMICorePath.Text = My.Settings.LBPath
+                LoadLioaranBoardPermissions(SAMMICorePath.Text, True, False)
             Else
-                PermFileTree.Nodes.Add("StartMessage", "Select LioranBoard Receiver Folder Above")
+                PermFileTree.Nodes.Add("StartMessage", "Select SAMMI Core.exe Folder Above")
             End If
             If Not String.IsNullOrEmpty(My.Settings.ChannelName) Then
                 ChannelName.Text = My.Settings.ChannelName
@@ -135,14 +135,14 @@ Public Class Form1
 
 #Region "Button Handlers"
 
-    '--- Browse - Select LioranBoard Folder Location
+    '--- Browse - Select SAMMI Folder Location
     Private Sub LB_Browse_Button_Click(sender As Object, e As EventArgs) Handles LB_Browse_Button.Click
         Try
             If FolderBrowserDialog1.ShowDialog() = DialogResult.OK Then
-                LioranBoardPath.Text = FolderBrowserDialog1.SelectedPath
-                My.Settings.LBPath = LioranBoardPath.Text
+                SAMMICorePath.Text = FolderBrowserDialog1.SelectedPath
+                My.Settings.LBPath = SAMMICorePath.Text
                 My.Settings.Save()
-                LoadLioaranBoardPermissions(LioranBoardPath.Text, False, False)
+                LoadLioaranBoardPermissions(SAMMICorePath.Text, False, False)
             End If
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
@@ -222,26 +222,26 @@ Public Class Form1
                         End Using
 
                         PermFileTree.Nodes.Clear()
-                        PermFileTree.Nodes.Add("LioranBoard Path selected. ^-^")
+                        PermFileTree.Nodes.Add("SAMMI Core Path selected. ^-^")
 
                     End If
 
                 Else
 
                     PermFileTree.Nodes.Clear()
-                    PermFileTree.Nodes.Add("Placeholder", "Select LioranBoard Receiver Folder Above")
+                    PermFileTree.Nodes.Add("Placeholder", "Select SAMMI Core Receiver Folder Above")
 
                 End If
 
             Else
 
                 If Not p_blnStartup Then
-                    MessageBox.Show("This isn't the right folder. Please select the folder your LioranBoard Receiver.exe is in")
+                    MessageBox.Show("This isn't the right folder. Please select the folder your SAMMI Core.exe is in")
                 End If
 
-                LioranBoardPath.Text = String.Empty
+                SAMMICorePath.Text = String.Empty
                 PermFileTree.Nodes.Clear()
-                PermFileTree.Nodes.Add("Placeholder", "Select LioranBoard Receiver Folder Above")
+                PermFileTree.Nodes.Add("Placeholder", "Select SAMMI Core.exe Folder Above")
                 My.Settings.LBPath = String.Empty
                 My.Settings.Save()
 
@@ -460,7 +460,7 @@ Public Class Form1
             Dim blnFoundGroup As Boolean = False
             Dim blnSkipUser As Boolean = False
 
-            Dim lines As List(Of String) = File.ReadAllLines(LioranBoardPath.Text & "\" & c_strFileName).ToList
+            Dim lines As List(Of String) = File.ReadAllLines(SAMMICorePath.Text & "\" & c_strFileName).ToList
 
             For Each strLine As String In lines
                 If Not String.IsNullOrEmpty(strLine) AndAlso strLine.StartsWith("[") Then
@@ -480,10 +480,10 @@ Public Class Form1
                 End If
             Next
 
-            File.Delete(LioranBoardPath.Text & "\" & c_strFileName)
-            File.WriteAllLines(LioranBoardPath.Text & "\" & c_strFileName, stringList)
+            File.Delete(SAMMICorePath.Text & "\" & c_strFileName)
+            File.WriteAllLines(SAMMICorePath.Text & "\" & c_strFileName, stringList)
 
-            LoadLioaranBoardPermissions(LioranBoardPath.Text, False, False)
+            LoadLioaranBoardPermissions(SAMMICorePath.Text, False, False)
 
             For Each node As TreeNode In PermFileTree.Nodes
                 If node.Text = strParentNode Then
@@ -523,7 +523,7 @@ Public Class Form1
                 Dim blnFoundGroup As Boolean = False
                 Dim blnSkipUser As Boolean = False
 
-                Dim lines As List(Of String) = File.ReadAllLines(LioranBoardPath.Text & "\" & c_strFileName).ToList
+                Dim lines As List(Of String) = File.ReadAllLines(SAMMICorePath.Text & "\" & c_strFileName).ToList
                 Dim intGroupLine As Integer = 0
                 Dim intLineCount As Integer = 0
                 For Each strLine As String In lines
@@ -558,10 +558,10 @@ Public Class Form1
 
                 End If
 
-                File.Delete(LioranBoardPath.Text & "\" & c_strFileName)
-                File.WriteAllLines(LioranBoardPath.Text & "\" & c_strFileName, stringList)
+                File.Delete(SAMMICorePath.Text & "\" & c_strFileName)
+                File.WriteAllLines(SAMMICorePath.Text & "\" & c_strFileName, stringList)
 
-                LoadLioaranBoardPermissions(LioranBoardPath.Text, False, False)
+                LoadLioaranBoardPermissions(SAMMICorePath.Text, False, False)
             End If
 
         Catch ex As Exception
@@ -603,7 +603,7 @@ Public Class Form1
                 Dim blnFoundGroup As Boolean = False
                 Dim blnSkipUser As Boolean = False
 
-                Dim lines As List(Of String) = File.ReadAllLines(LioranBoardPath.Text & "\" & c_strFileName).ToList
+                Dim lines As List(Of String) = File.ReadAllLines(SAMMICorePath.Text & "\" & c_strFileName).ToList
                 Dim intGroupLine As Integer = 0
                 Dim intLineCount As Integer = 0
 
@@ -629,10 +629,10 @@ Public Class Form1
                     stringList.Add(p_strUserName)
                 End If
 
-                File.Delete(LioranBoardPath.Text & "\" & c_strFileName)
-                File.WriteAllLines(LioranBoardPath.Text & "\" & c_strFileName, stringList)
+                File.Delete(SAMMICorePath.Text & "\" & c_strFileName)
+                File.WriteAllLines(SAMMICorePath.Text & "\" & c_strFileName, stringList)
 
-                LoadLioaranBoardPermissions(LioranBoardPath.Text, False, False)
+                LoadLioaranBoardPermissions(SAMMICorePath.Text, False, False)
 
             End If
 
@@ -654,7 +654,7 @@ Public Class Form1
                 Dim blnFoundGroup As Boolean = False
                 Dim blnSkipLine As Boolean = False
 
-                Dim lines As List(Of String) = File.ReadAllLines(LioranBoardPath.Text & "\" & c_strFileName).ToList
+                Dim lines As List(Of String) = File.ReadAllLines(SAMMICorePath.Text & "\" & c_strFileName).ToList
 
                 For Each strLine As String In lines
 
@@ -678,10 +678,10 @@ Public Class Form1
 
                 Next
 
-                File.Delete(LioranBoardPath.Text & "\" & c_strFileName)
-                File.WriteAllLines(LioranBoardPath.Text & "\" & c_strFileName, stringList)
+                File.Delete(SAMMICorePath.Text & "\" & c_strFileName)
+                File.WriteAllLines(SAMMICorePath.Text & "\" & c_strFileName, stringList)
 
-                LoadLioaranBoardPermissions(LioranBoardPath.Text, False, True)
+                LoadLioaranBoardPermissions(SAMMICorePath.Text, False, True)
 
             End If
 
@@ -802,12 +802,13 @@ Public Class Form1
     End Sub
 
     '--- Gets selected Group Name from Permission Tree, replaces GroupName in json string
-    '--- and copies the LioranBoard json string to your clipboard
+    '--- and copies the SAMMI json string to your clipboard
     Private Sub ExportJsonButton()
         Try
             Dim strNodeName As String = PermFileTree.SelectedNode.Text.Trim("[").Trim("]").Trim()
 
-            Dim strValue As String = "{ ""websocketvalue4_1"": ""allowed_user"", ""websocketvalue2_2"": ""=="", ""websocketdelay2"": 0.000000, ""websocketaction1"": 40.000000, ""websocketvalue3_4"": """", ""exported_with"": ""Version V 1.44b"", ""websocketvalue3_0"": ""false"", ""color"": 12632256.000000, ""websocketvalue5_3"": """", ""websocketvalue2_0"": ""User Name"", ""websocketdelay0"": 0.000000, ""websocketaction3"": 92.000000, ""websocketvalue4_3"": """", ""websocketvalue5_1"": """", ""text"": """", ""websocketvalue2_4"": ""false"", ""websocketvalue3_2"": ""\""true\"""", ""websocketdelay4"": 0.000000, ""websocketvalue6_3"": """", ""websocketvalue8_3"": """", ""websocketvalue1_2"": ""allowed_user"", ""combine"": 0.000000, ""websocketvalue7_1"": """", ""websocketvalue8_1"": """", ""websocketvalue1_4"": ""ID44"", ""websocketvalue6_1"": """", ""websocketvalue7_3"": """", ""picture"": """", ""websocketvalue1_0"": ""username"", ""websocketvalue3_1"": ""\/$username$\/"", ""websocketaction4"": 34.000000, ""activepress"": 0.000000, ""websocketvalue5_2"": ""0"", ""websocketvalue4_4"": """", ""www"": 1.000000, ""websocketvalue4_0"": """", ""websocketdelay3"": 0.000000, ""websocketaction0"": 35.000000, ""websocketvalue2_3"": """", ""websocketvalue5_0"": """", ""websocketvalue3_3"": """", ""websocketdelay1"": 0.000000, ""hhh"": 1.000000, ""websocketaction2"": 121.000000, ""websocketvalue2_1"": ""!!!!!!!!!!"", ""group_id"": """", ""websocketvalue5_4"": """", ""websocketvalue4_2"": ""2"", ""websocketvalue1_3"": ""Call Another Button here, or add commands for this button (example below calls another button)"", ""websocketvalue7_0"": """", ""pubsubqueue"": 0.000000, ""websocketvalue6_2"": """", ""type"": 32.000000, ""websocketvalue7_4"": """", ""websocketvalue8_2"": """", ""websocketvalue6_4"": """", ""border_size"": 0.000000, ""websocketvalue7_2"": """", ""button_id"": ""ID59"", ""websocketvalue1_1"": ""@@@@@@@@@@"", ""websocketvalue8_4"": """", ""websocketvalue8_0"": """", ""websocketvalue6_0"": """" }"
+            'Dim strValue As String = "{ ""websocketvalue4_1"": ""allowed_user"", ""websocketvalue2_2"": ""=="", ""websocketdelay2"": 0.000000, ""websocketaction1"": 40.000000, ""websocketvalue3_4"": """", ""exported_with"": ""Version V 1.44b"", ""websocketvalue3_0"": ""false"", ""color"": 12632256.000000, ""websocketvalue5_3"": """", ""websocketvalue2_0"": ""User Name"", ""websocketdelay0"": 0.000000, ""websocketaction3"": 92.000000, ""websocketvalue4_3"": """", ""websocketvalue5_1"": """", ""text"": """", ""websocketvalue2_4"": ""false"", ""websocketvalue3_2"": ""\""true\"""", ""websocketdelay4"": 0.000000, ""websocketvalue6_3"": """", ""websocketvalue8_3"": """", ""websocketvalue1_2"": ""allowed_user"", ""combine"": 0.000000, ""websocketvalue7_1"": """", ""websocketvalue8_1"": """", ""websocketvalue1_4"": ""ID44"", ""websocketvalue6_1"": """", ""websocketvalue7_3"": """", ""picture"": """", ""websocketvalue1_0"": ""username"", ""websocketvalue3_1"": ""\/$username$\/"", ""websocketaction4"": 34.000000, ""activepress"": 0.000000, ""websocketvalue5_2"": ""0"", ""websocketvalue4_4"": """", ""www"": 1.000000, ""websocketvalue4_0"": """", ""websocketdelay3"": 0.000000, ""websocketaction0"": 35.000000, ""websocketvalue2_3"": """", ""websocketvalue5_0"": """", ""websocketvalue3_3"": """", ""websocketdelay1"": 0.000000, ""hhh"": 1.000000, ""websocketaction2"": 121.000000, ""websocketvalue2_1"": ""!!!!!!!!!!"", ""group_id"": """", ""websocketvalue5_4"": """", ""websocketvalue4_2"": ""2"", ""websocketvalue1_3"": ""Call Another Button here, or add commands for this button (example below calls another button)"", ""websocketvalue7_0"": """", ""pubsubqueue"": 0.000000, ""websocketvalue6_2"": """", ""type"": 32.000000, ""websocketvalue7_4"": """", ""websocketvalue8_2"": """", ""websocketvalue6_4"": """", ""border_size"": 0.000000, ""websocketvalue7_2"": """", ""button_id"": ""ID59"", ""websocketvalue1_1"": ""@@@@@@@@@@"", ""websocketvalue8_4"": """", ""websocketvalue8_0"": """", ""websocketvalue6_0"": """" }"
+            Dim strValue As String = "{ ""color"": 5095486.0, ""persistent"": true, ""text"": ""Sample TVR"", ""release_duration"": 0.0, ""queueable"": false, ""command_list"": [ { ""b1"": ""user_name"", ""cmd"": 66.0, ""obsid"": ""Main"", ""pos"": 0.0, ""vis"": true, ""ms"": 0.0, ""sel"": false, ""dis"": false, ""xpan"": 0.0, ""b0"": ""username"" }, { ""b1"": ""!!!!!!!!!!"", ""b3"": ""allowed_user"", ""cmd"": 127.0, ""obsid"": ""Main"", ""pos"": 1.0, ""vis"": true, ""ms"": 0.0, ""sel"": false, ""dis"": false, ""xpan"": 0.0, ""b0"": ""@@@@@@@@@@"", ""b2"": ""\/$username$\/"" }, { ""b53"": """", ""b5"": """", ""b13"": ""=="", ""v14"": 0.0, ""b36"": """", ""b38"": """", ""v10"": 0.0, ""b32"": """", ""b19"": ""=="", ""b57"": """", ""b59"": """", ""b17"": """", ""b1"": ""=="", ""v18"": 0.0, ""v16"": 0.0, ""b34"": ""=="", ""b7"": ""=="", ""b11"": """", ""b9"": """", ""b51"": """", ""b15"": """", ""b3"": """", ""b55"": ""=="", ""v12"": 0.0, ""cmd"": 7.0, ""b30"": """", ""b43"": ""=="", ""v21"": 0.0, ""v1"": 0.0, ""b26"": """", ""b28"": ""=="", ""obsid"": ""Main"", ""b22"": ""=="", ""pos"": 2.0, ""v5"": 0.0, ""b47"": """", ""b49"": ""=="", ""v3"": 0.0, ""vis"": true, ""b24"": """", ""ms"": 0.0, ""b41"": """", ""sel"": false, ""b45"": """", ""v9"": 0.0, ""dis"": false, ""xpan"": 0.0, ""b20"": """", ""v7"": 0.0, ""b33"": """", ""v11"": 0.0, ""b16"": ""=="", ""b0"": ""allowed_user"", ""b58"": ""=="", ""b56"": """", ""b18"": """", ""b4"": ""=="", ""b12"": """", ""b52"": ""=="", ""b39"": """", ""b37"": ""=="", ""v15"": 0.0, ""b54"": """", ""b14"": """", ""b2"": ""\""true\"""", ""b31"": ""=="", ""v13"": 0.0, ""b35"": """", ""v17"": 0.0, ""v19"": 0.0, ""b50"": """", ""b8"": """", ""b6"": """", ""b10"": ""=="", ""b23"": """", ""v4"": 0.0, ""b48"": """", ""b46"": ""=="", ""v20"": 0.0, ""b42"": """", ""b29"": """", ""v0"": 2.0, ""b27"": """", ""b44"": """", ""b21"": """", ""v6"": 0.0, ""v8"": 0.0, ""v2"": 1.0, ""b25"": ""=="", ""b40"": ""=="", ""v22"": 0.0 }, { ""cmd"": 6.0, ""obsid"": ""Main"", ""pos"": 3.0, ""vis"": true, ""ms"": 0.0, ""sel"": false, ""dis"": false, ""xpan"": 0.0, ""b0"": ""Call Another Button here, or add commands for this button (example below calls another button)"", ""v0"": 0.0 }, { ""b1"": ""0"", ""cmd"": 132.0, ""obsid"": ""Main"", ""pos"": 4.0, ""vis"": true, ""ms"": 0.0, ""sel"": false, ""dis"": false, ""xpan"": 0.0, ""b0"": ""ID54"", ""v0"": false } ], ""press_type"": 0.0, ""x"": 0.0, ""border"": 2.0, ""image"": """", ""triggers"": [ ], ""group_id"": """", ""overlappable"": false, ""init_variable"": """", ""width"": 0.19999999999999995559107901499374, ""button_id"": ""ID1"", ""button_duration"": 0.0, ""y"": 0.80000000000000004440892098500626, ""switch_deck"": """", ""height"": 0.20000000000000006661338147750939, ""release_list"": [ ], ""functions"": 65.0, ""stretch"": false }"
 
             Dim strExampleButton As String = strValue.Replace("!!!!!!!!!!", strNodeName).Replace("@@@@@@@@@@", c_strFileName)
 
