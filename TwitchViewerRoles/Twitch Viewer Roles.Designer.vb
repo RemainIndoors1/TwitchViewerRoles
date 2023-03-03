@@ -280,7 +280,7 @@ Partial Class TwitchViewerRoles
         Me.DocLabel.TabIndex = 25
         Me.DocLabel.Text = "Documentation"
         '
-        'Form1
+        'TwitchViewerRoles
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -308,7 +308,7 @@ Partial Class TwitchViewerRoles
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "Twitch Viewer Roles"
+        Me.Name = "TwitchViewerRoles"
         Me.Text = "Twitch Viewer Roles"
         Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()

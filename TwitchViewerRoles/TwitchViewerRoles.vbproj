@@ -15,7 +15,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Robert\Desktop\TwitchViewerRoles InstallerX\</PublishUrl>
+    <PublishUrl>C:\Users\Remain\VS Projects\Deploy\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -25,7 +25,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ProductName>Blondies Beta Controller Permissions Tool for LioranBoard</ProductName>
+    <ProductName>Twitch Viewer Roles</ProductName>
     <PublisherName>Remain Indoors</PublisherName>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.0</ApplicationVersion>
@@ -225,6 +225,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\AddUserText.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TVR-Icon.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TVR-ICON.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TVR-ICON.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
