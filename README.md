@@ -1,5 +1,5 @@
 # Twitch Viewer Roles
-Twitch Viewer Roles for LioranBoard and OBS Studio
+Twitch Viewer Roles for SAMMI and OBS Studio
 
 ## Overview
 
