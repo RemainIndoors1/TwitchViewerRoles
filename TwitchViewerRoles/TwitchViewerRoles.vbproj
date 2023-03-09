@@ -15,7 +15,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Robert\Desktop\TwitchViewerRoles InstallerX\</PublishUrl>
+    <PublishUrl>C:\Users\Remain\VS Projects\Deploy\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -25,7 +25,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ProductName>Blondies Beta Controller Permissions Tool for LioranBoard</ProductName>
+    <ProductName>Twitch Viewer Roles</ProductName>
     <PublisherName>Remain Indoors</PublisherName>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.0</ApplicationVersion>
@@ -75,7 +75,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -109,11 +109,11 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.vb">
+    <Compile Include="Twitch Viewer Roles.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="Twitch Viewer Roles.Designer.vb">
+      <DependentUpon>Twitch Viewer Roles.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserRolesDialog.Designer.vb">
@@ -128,6 +128,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -141,8 +142,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="Twitch Viewer Roles.resx">
+      <DependentUpon>Twitch Viewer Roles.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserRolesDialog.resx">
       <DependentUpon>UserRolesDialog.vb</DependentUpon>
@@ -224,6 +225,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\AddUserText.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TVR-Icon.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TVR-ICON.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TVR-ICON.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
